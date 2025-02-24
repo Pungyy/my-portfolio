@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import GlowCursor from "@/components/GlowCursor";
 
 export const metadata = {
   title: "Ibrahim ANIL ~ Portfolio",
@@ -9,11 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body
-        className="p-20"
-      >
+      <body className="relative bg-black text-white">
+        <GlowCursor />
         <Navbar />
-        {children}
+        <main className="p-20">{children}</main>
       </body>
     </html>
   );
