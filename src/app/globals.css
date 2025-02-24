@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "Neue Haas Grotesk Display Pro";
+  font-family: "Montserrat";
   background-color: #000;
   color: var(--copy);
 }
@@ -45,7 +45,7 @@ a {
   text-decoration: none;
   text-transform: uppercase;
   color: var(--copy);
-  font-family: "Akkurat Mono";
+  font-family: "Montserrat";
   font-size: 12px;
   font-weight: 600;
   padding: 0.5em;
