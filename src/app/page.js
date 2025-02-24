@@ -1,10 +1,39 @@
-import Image from "next/image";
+"use client";
+
+import { useRef } from "react";
+
+import ReactLenis from "@studio-freight/react-lenis";
+
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import SplitType from "split-type";
+
+gsap.registerPlugin(useGSAP);
 
 export default function Home() {
-  return (
-    <div>
-      <h1 className="text-2xl text-white">Portfolio Anil ~ Ibrahim</h1>
-    </div>
+  const container = useRef();
 
+  useGSAP(
+    () => {
+      const heroText = new SplitType(".home h1", { types: "chars"});
+      gsap.set(heroText.chars, { y: 400});
+
+      gsap.to(heroText.chars, {
+        y: 0,
+        duration: 1,
+        stagger: 0.075,
+        ease: "power4.out",
+        delay: 1,
+      })
+    },
+    { scope: container }
+  );
+
+  return (
+    <ReactLenis root>
+      <div className="home" ref={container}>
+        <h1>Ibrahim</h1>
+      </div>
+    </ReactLenis>
   );
 }
