@@ -22,7 +22,7 @@ body {
 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .nav {
@@ -46,7 +46,7 @@ a {
   text-transform: uppercase;
   color: var(--copy);
   font-family: "Montserrat";
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   padding: 0.5em;
 }
