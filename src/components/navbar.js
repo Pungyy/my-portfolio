@@ -55,7 +55,7 @@ const Navbar = () => {
                         }}
                         href="/"
                     >
-                        Index
+                        HOME
                     </a>
                 </div>
             </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
                         }}
                         href="/projects"
                     >
-                        projects
+                        PROJECTS
                     </a>
                 </div>
                 <div className="link">
@@ -83,7 +83,7 @@ const Navbar = () => {
                         }}
                         href="/contact"
                     >
-                        contact
+                        CONTACT
                     </a>
                 </div>
             </div>

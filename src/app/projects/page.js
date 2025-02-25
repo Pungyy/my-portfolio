@@ -78,7 +78,7 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-10">
-      <h1 className="text-3xl font-bold mb-6">Mes Projets</h1>
+      <h1 className="text-3xl font-bold mb-6">MY PROJECTS</h1>
       
       {/* Grille de projets */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
