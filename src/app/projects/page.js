@@ -7,39 +7,40 @@ import { gsap } from "gsap";  // Importation de GSAP pour les animations
 const projects = [
   { 
     id: 1, 
-    title: "Projet 1", 
-    description: "Description du projet 1.", 
-    images: ["/mercadie/mercadie1.png", "/mercadie/mercadie2.png", "/mercadie/mercadie3.png"]
+    title: "Mercadie Project", 
+    description: "Languages : HTML, CSS, JavaScript, jQuery, PHP", 
+    images: ["/mercadie/mercadie1.png", "/mercadie/mercadie2.png", "/mercadie/mercadie3.png", "/mercadie/mercadie4.png", "/mercadie/mercadie5.png" , "/mercadie/mercadie6.png" ,"/mercadie/mercadie8.png",
+          "/mercadie/mercadie9.png", "/mercadie/mercadie10.png", "/mercadie/mercadie11.png", "/mercadie/mercadie12.png"]
   },
   { 
     id: 2, 
-    title: "Projet 2", 
+    title: "Pizza Project", 
     description: "Description du projet 2.", 
-    images: ["/pizza/pizza.png", "/pizza/pizza2.png", "/pizza/pizza3.png"]
+    images: ["/pizza/pizza.png", "/pizza/pizza2.png", "/pizza/pizza3.png", "/pizza/pizza4.png", "/pizza/pizza5.png"]
   },
   { 
     id: 3, 
     title: "Projet 3", 
     description: "Description du projet 3.", 
-    images: ["/escape/escape.png", "/escape/escape2.png", "/escape/escape3.png"]
+    images: ["/escape/escape.png"]
   },
   { 
     id: 4, 
     title: "Projet 3", 
     description: "Description du projet 3.", 
-    images: ["/escape/escape.png", "/escape/escape2.png", "/escape/escape3.png"]
+    images: ["/escape/escape.png"]
   },
   { 
     id: 5, 
     title: "Projet 3", 
     description: "Description du projet 3.", 
-    images: ["/escape/escape.png", "/escape/escape2.png", "/escape/escape3.png"]
+    images: ["/traiteur.png"]
   },
   { 
     id: 6, 
     title: "Projet 3", 
     description: "Description du projet 3.", 
-    images: ["/escape/escape.png", "/escape/escape2.png", "/escape/escape3.png"]
+    images: ["/escape/escape.png"]
   },
 ];
 
@@ -99,17 +100,15 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* Modal d'affichage du projet sélectionné */}
       {selectedProject && (
         <div 
           className="fixed inset-0 flex items-center justify-center bg-black/80"
           onClick={handleCloseModal}
         >
           <div 
-            className="bg-gray-900 p-10 rounded-lg shadow-lg text-center relative w-full max-w-5xl h-auto max-h-[80vh] overflow-auto" 
+            className="bg-gray-700 p-10 rounded-lg shadow-lg text-center relative w-full max-w-5xl h-auto max-h-[80vh] overflow-auto" 
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Image du carousel avec référence pour l'animation */}
             <div ref={imageRef}>
               <Image 
                 src={selectedProject.images[currentImageIndex]} 
@@ -120,11 +119,9 @@ const Projects = () => {
               />
             </div>
             
-            {/* Informations du projet */}
             <h2 className="text-3xl font-semibold mt-4">{selectedProject.title}</h2>
             <p className="text-gray-300 mt-2">{selectedProject.description}</p>
             
-            {/* Boutons de navigation du carousel */}
             <div className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer" onClick={handlePrevImage}>
               <span className="text-white text-3xl">‹</span>
             </div>
