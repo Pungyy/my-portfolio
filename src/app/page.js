@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import Navbar from "../components/navbar";
 import { SiTailwindcss } from "react-icons/si";
+import GlowCursor from "../components/GlowCursor"; // Import du composant GlowCursor
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,8 +15,10 @@ export default function Home() {
   const container = useRef();
   const roadmapRef = useRef();
   const educationRef = useRef();
-
+  const scrollIconRef = useRef();
   const [neonStyles, setNeonStyles] = useState([]);
+  const [scrolling, setScrolling] = useState(false);
+  const [showScrollIcon, setShowScrollIcon] = useState(false);
 
   const randomPosition = (min, max) => Math.random() * (max - min) + min;
   const randomSize = (min, max) => Math.random() * (max - min) + min;
@@ -41,6 +44,9 @@ export default function Home() {
       stagger: 0.05,
       ease: "power4.out",
       delay: 1,
+      onComplete: () => {
+        setShowScrollIcon(true);
+      },
     });
 
     const heroSubText = new SplitType(".hero-section p", { types: "chars" });
@@ -87,11 +93,45 @@ export default function Home() {
         toggleActions: "play none none reset",
       },
     });
+
+    gsap.fromTo(
+      scrollIconRef.current,
+      { y: 0 },
+      {
+        y: 20,
+        repeat: -1,
+        yoyo: true,
+        duration: 1.5,
+        ease: "power1.inOut",
+      }
+    );
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <ReactLenis root>
       <Navbar />
+      <GlowCursor />
 
       <div className="relative bg-black text-white overflow-hidden min-h-screen">
         <div className="absolute inset-0 pointer-events-none">
@@ -170,6 +210,17 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Icône de scroll */}
+        {showScrollIcon && !scrolling && (
+          <div
+            ref={scrollIconRef}
+            onClick={scrollToBottom}
+            className="fixed bottom-20 left-1/2 transform -translate-x-1/2 text-white text-3xl w-16 h-16 flex items-center justify-center border-4 border-white rounded-full cursor-pointer"
+          >
+            <i className="fas fa-chevron-down"></i>
+          </div>
+        )}
       </div>
     </ReactLenis>
   );
