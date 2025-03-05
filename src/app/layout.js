@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import GlowCursor from "@/components/GlowCursor";
 import { ViewTransitions } from "next-view-transitions";
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Importer FontAwesome
 
 export const metadata = {
   title: "Ibrahim ANIL ~ Portfolio",

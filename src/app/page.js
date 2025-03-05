@@ -5,7 +5,8 @@ import ReactLenis from "@studio-freight/react-lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
-import Navbar from "../components/navbar"; // Assurez-vous que le chemin est correct
+import Navbar from "../components/navbar";
+import { SiTailwindcss } from "react-icons/si"; // Importation de l'icône Tailwind CSS
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,30 +110,78 @@ export default function Home() {
 
         {/* Première section */}
         <div className="hero-section h-screen flex flex-col items-center justify-center relative z-10" ref={container}>
-          <h1 className="text-8xl md:text-9xl font-extrabold tracking-wide">Ibrahim</h1>
+          <h1 className="text-8xl md:text-9xl font-extrabold tracking-wide text-center">Ibrahim</h1>
+          <p className="text-2xl mt-4">Full-Stack Developer | Web Enthusiast</p>
         </div>
 
-        {/* Deuxième section - Roadmap */}
+        {/* Deuxième section - Expérience professionnelle */}
         <div className="roadmap-section h-screen flex flex-col items-center justify-center relative z-10" ref={roadmapRef}>
-          <ul className="space-y-4 text-xl">
-            <li className="roadmap-item">🎓 Études en développement web</li>
-            <li className="roadmap-item">💼 Premier stage en entreprise</li>
-            <li className="roadmap-item">🚀 Lancement de projets personnels</li>
-            <li className="roadmap-item">📚 Apprentissage avancé en Next.js et animations</li>
-            <li className="roadmap-item">🌍 Création de mon portfolio et networking</li>
-          </ul>
+          <h2 className="text-4xl font-bold mb-6">Professional Experience</h2>
+          <div className="space-y-4 text-xl max-w-3xl">
+            <div className="roadmap-item">
+              <strong>Full-Stack Developer</strong> at One System (Oct 2024 - Aug 2025)
+            </div>
+            <div className="roadmap-item">
+              <strong>Web Developer</strong> at Novances IT (Nov 2021 - Jun 2023)
+            </div>
+          </div>
         </div>
 
         {/* Troisième section - Parcours scolaire */}
         <div className="education-section h-screen flex flex-col items-center justify-center relative z-10" ref={educationRef}>
-          <h2 className="text-6xl font-bold mb-6">Mon Parcours Scolaire</h2>
-          <ul className="space-y-4 text-xl">
-            <li className="education-item">🏫 Lycée Scientifique - Bac en sciences</li>
-            <li className="education-item">💻 Formation en Développement Web</li>
-            <li className="education-item">🎓 Diplôme en Informatique</li>
-            <li className="education-item">🚀 Spécialisation en Next.js et animations web</li>
-          </ul>
+          <h2 className="text-4xl font-bold mb-6">Education</h2>
+          <div className="space-y-4 text-xl max-w-3xl">
+            <div className="education-item">
+              <strong>My Digital School Lyon</strong> - Full-Stack Web Developer (Sept 2024 - Oct 2025)
+            </div>
+            <div className="education-item">
+              <strong>Institut G4</strong> - Web Application Design & Development (Sept 2021 - May 2023)
+            </div>
+          </div>
         </div>
+
+        {/* Quatrième section - Compétences techniques avec icônes */}
+        <div className="skills-section h-screen flex flex-col items-center justify-center relative z-10">
+          <h2 className="text-4xl font-bold mb-6">Technical Skills</h2>
+          <div className="flex flex-wrap justify-center gap-6 px-4 md:px-0">
+            {/* HTML */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-html5 text-orange-500 text-4xl mr-2"></i> HTML
+            </div>
+            {/* CSS */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-css3-alt text-blue-500 text-4xl mr-2"></i> CSS
+            </div>
+            {/* JavaScript */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-js-square text-yellow-500 text-4xl mr-2"></i> JavaScript
+            </div>
+            {/* React */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-react text-cyan-400 text-4xl mr-2"></i> React
+            </div>
+            {/* Node.js */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-node-js text-green-500 text-4xl mr-2"></i> Node.js (Express)
+            </div>
+            {/* PHP */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-php text-purple-600 text-4xl mr-2"></i> PHP
+            </div>
+            {/* Bootstrap */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <i className="fab fa-bootstrap text-purple-500 text-4xl mr-2"></i> Bootstrap
+            </div>
+            {/* Tailwind */}
+            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+              <SiTailwindcss className="text-blue-400 text-4xl mr-2" />
+              Tailwind
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </ReactLenis>
   );
