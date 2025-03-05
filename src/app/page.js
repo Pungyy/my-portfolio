@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import ReactLenis from "@studio-freight/react-lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,12 +14,26 @@ export default function Home() {
   const roadmapRef = useRef();
   const educationRef = useRef();
 
+  // État pour stocker les valeurs de position, taille et rotation des néons
+  const [neonStyles, setNeonStyles] = useState([]);
+
   // Fonction pour générer des valeurs aléatoires
   const randomPosition = (min, max) => Math.random() * (max - min) + min;
   const randomSize = (min, max) => Math.random() * (max - min) + min;
   const randomRotation = (min, max) => Math.random() * (max - min) + min;
 
   useEffect(() => {
+    // Générer les néons et leur position une seule fois lors du montage du composant côté client
+    const newNeonStyles = Array.from({ length: 12 }).map(() => ({
+      top: `${randomPosition(5, 80)}%`,
+      left: `${randomPosition(5, 80)}%`,
+      width: `${randomSize(50, 100)}px`,
+      height: `${randomSize(50, 100)}px`,
+      transform: `rotate(${randomRotation(-15, 15)}deg)`,
+    }));
+
+    setNeonStyles(newNeonStyles);
+
     const heroText = new SplitType(".hero-section h1", { types: "chars" });
     gsap.set(heroText.chars, { y: 400 });
 
@@ -76,125 +90,21 @@ export default function Home() {
       <div className="relative bg-black text-white overflow-hidden min-h-screen">
         {/* Effet de blur dynamique avec des néons ajustés de manière aléatoire */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Néon bleu aléatoire */}
-          <div
-            className="absolute bg-blue-500 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(10, 60)}%`,
-              left: `${randomPosition(5, 50)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon rose aléatoire */}
-          <div
-            className="absolute bg-pink-500 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(20, 70)}%`,
-              left: `${randomPosition(30, 80)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon vert aléatoire */}
-          <div
-            className="absolute bg-green-500 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(30, 80)}%`,
-              left: `${randomPosition(10, 60)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon teal aléatoire */}
-          <div
-            className="absolute bg-teal-400 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(15, 75)}%`,
-              left: `${randomPosition(20, 70)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon violet aléatoire */}
-          <div
-            className="absolute bg-purple-400 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(25, 85)}%`,
-              left: `${randomPosition(10, 50)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon jaune aléatoire */}
-          <div
-            className="absolute bg-yellow-400 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(5, 60)}%`,
-              left: `${randomPosition(30, 80)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon orange aléatoire */}
-          <div
-            className="absolute bg-orange-400 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(10, 80)}%`,
-              left: `${randomPosition(10, 70)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon indigo aléatoire */}
-          <div
-            className="absolute bg-indigo-400 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(15, 70)}%`,
-              left: `${randomPosition(20, 75)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon cyan aléatoire */}
-          <div
-            className="absolute bg-cyan-400 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(5, 50)}%`,
-              left: `${randomPosition(30, 85)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
-
-          {/* Néon violet clair aléatoire */}
-          <div
-            className="absolute bg-violet-300 blur-2xl opacity-30 animate-pulse"
-            style={{
-              top: `${randomPosition(25, 75)}%`,
-              left: `${randomPosition(40, 90)}%`,
-              width: `${randomSize(50, 100)}px`,
-              height: `${randomSize(50, 100)}px`,
-              transform: `rotate(${randomRotation(-15, 15)}deg)`,
-            }}
-          ></div>
+          {/* Néons générés avec les styles calculés */}
+          {neonStyles.map((style, index) => (
+            <div
+              key={index}
+              className={`absolute blur-2xl opacity-30 animate-pulse 
+                ${index % 7 === 0 ? "bg-blue-500" : ""}
+                ${index % 7 === 1 ? "bg-pink-500" : ""}
+                ${index % 7 === 2 ? "bg-green-500" : ""}
+                ${index % 7 === 3 ? "bg-teal-400" : ""}
+                ${index % 7 === 4 ? "bg-purple-400" : ""}
+                ${index % 7 === 5 ? "bg-yellow-400" : ""}
+                ${index % 7 === 6 ? "bg-red-500" : ""}`}
+              style={style}
+            ></div>
+          ))}
         </div>
 
         {/* Première section */}
