@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import Navbar from "../components/navbar";
-import { SiTailwindcss } from "react-icons/si"; // Importation de l'icône Tailwind CSS
+import { SiTailwindcss } from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,16 +15,13 @@ export default function Home() {
   const roadmapRef = useRef();
   const educationRef = useRef();
 
-  // État pour stocker les valeurs de position, taille et rotation des néons
   const [neonStyles, setNeonStyles] = useState([]);
 
-  // Fonction pour générer des valeurs aléatoires
   const randomPosition = (min, max) => Math.random() * (max - min) + min;
   const randomSize = (min, max) => Math.random() * (max - min) + min;
   const randomRotation = (min, max) => Math.random() * (max - min) + min;
 
   useEffect(() => {
-    // Générer les néons et leur position une seule fois lors du montage du composant côté client
     const newNeonStyles = Array.from({ length: 12 }).map(() => ({
       top: `${randomPosition(5, 80)}%`,
       left: `${randomPosition(5, 80)}%`,
@@ -40,13 +37,23 @@ export default function Home() {
 
     gsap.to(heroText.chars, {
       y: 0,
-      duration: 1,
-      stagger: 0.075,
+      duration: 0.6,
+      stagger: 0.05,
       ease: "power4.out",
       delay: 1,
     });
 
-    // Animation de la roadmap au scroll
+    const heroSubText = new SplitType(".hero-section p", { types: "chars" });
+    gsap.set(heroSubText.chars, { y: 400 });
+
+    gsap.to(heroSubText.chars, {
+      y: 0,
+      duration: 0.001,
+      stagger: 0.05,
+      ease: "power4.out",
+      delay: 1.4,
+    });
+
     const roadmapItems = gsap.utils.toArray(".roadmap-item");
     gsap.set(roadmapItems, { opacity: 0, y: 50 });
 
@@ -64,7 +71,6 @@ export default function Home() {
       },
     });
 
-    // Animation de la section éducation
     const educationItems = gsap.utils.toArray(".education-item");
     gsap.set(educationItems, { opacity: 0, y: 50 });
 
@@ -85,13 +91,10 @@ export default function Home() {
 
   return (
     <ReactLenis root>
-      {/* Navbar en haut */}
       <Navbar />
 
       <div className="relative bg-black text-white overflow-hidden min-h-screen">
-        {/* Effet de blur dynamique avec des néons ajustés de manière aléatoire */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Néons générés avec les styles calculés */}
           {neonStyles.map((style, index) => (
             <div
               key={index}
@@ -108,13 +111,11 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Première section */}
         <div className="hero-section h-screen flex flex-col items-center justify-center relative z-10" ref={container}>
           <h1 className="text-8xl md:text-9xl font-extrabold tracking-wide text-center">Ibrahim</h1>
           <p className="text-2xl mt-4">Full-Stack Developer | Web Enthusiast</p>
         </div>
 
-        {/* Deuxième section - Expérience professionnelle */}
         <div className="roadmap-section h-screen flex flex-col items-center justify-center relative z-10" ref={roadmapRef}>
           <h2 className="text-4xl font-bold mb-6">Professional Experience</h2>
           <div className="space-y-4 text-xl max-w-3xl">
@@ -127,7 +128,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Troisième section - Parcours scolaire */}
         <div className="education-section h-screen flex flex-col items-center justify-center relative z-10" ref={educationRef}>
           <h2 className="text-4xl font-bold mb-6">Education</h2>
           <div className="space-y-4 text-xl max-w-3xl">
@@ -140,48 +140,36 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Quatrième section - Compétences techniques avec icônes */}
         <div className="skills-section h-screen flex flex-col items-center justify-center relative z-10">
           <h2 className="text-4xl font-bold mb-6">Technical Skills</h2>
           <div className="flex flex-wrap justify-center gap-6 px-4 md:px-0">
-            {/* HTML */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-html5 text-orange-500 text-4xl mr-2"></i> HTML
             </div>
-            {/* CSS */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-css3-alt text-blue-500 text-4xl mr-2"></i> CSS
             </div>
-            {/* JavaScript */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-js-square text-yellow-500 text-4xl mr-2"></i> JavaScript
             </div>
-            {/* React */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-react text-cyan-400 text-4xl mr-2"></i> React
             </div>
-            {/* Node.js */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-node-js text-green-500 text-4xl mr-2"></i> Node.js (Express)
             </div>
-            {/* PHP */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-php text-purple-600 text-4xl mr-2"></i> PHP
             </div>
-            {/* Bootstrap */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <i className="fab fa-bootstrap text-purple-500 text-4xl mr-2"></i> Bootstrap
             </div>
-            {/* Tailwind */}
             <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
               <SiTailwindcss className="text-blue-400 text-4xl mr-2" />
               Tailwind
             </div>
           </div>
         </div>
-
-
-
       </div>
     </ReactLenis>
   );
