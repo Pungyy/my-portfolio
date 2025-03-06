@@ -51,16 +51,15 @@ export default function Home() {
       onComplete: () => setShowScrollIcon(true),
     });
 
-    // Animation du texte "Full-Stack Developer | Web Enthusiast"
     const descriptionText = new SplitType(".hero-section p", { types: "chars" });
-    gsap.set(descriptionText.chars, { y: 50, opacity: 0 }); // Définit l'opacité initiale à 0
+    gsap.set(descriptionText.chars, { y: 50, opacity: 0 });
     gsap.to(descriptionText.chars, {
       y: 0,
-      opacity: 1, // Transition de l'opacité de 0 à 1
+      opacity: 1,
       duration: 0.6,
       stagger: 0.05,
       ease: "power4.out",
-      delay: 1.5, // Un léger délai pour que cela commence après le titre
+      delay: 1.5,
     });
 
     const roadmapItems = gsap.utils.toArray(".roadmap-item");

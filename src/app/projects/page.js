@@ -89,11 +89,13 @@ const Projects = () => {
             className="cursor-pointer rounded-lg shadow-lg hover:scale-105 transition-transform"
             onClick={() => handleProjectClick(project)}
           >
+            {/* Image de la grille avec largeur et hauteur fixes */}
             <Image 
               src={project.images[0]} 
               alt={project.title} 
               width={500} 
               height={300} 
+              className="w-full h-[200px] object-cover rounded-lg" // Fixe la taille, responsive et garde le ratio
               priority
             />
           </div>
@@ -106,27 +108,36 @@ const Projects = () => {
           onClick={handleCloseModal}
         >
           <div 
-            className="bg-gray-700 p-10 rounded-lg shadow-lg text-center relative w-full max-w-5xl h-auto max-h-[80vh] overflow-auto" 
+            className="bg-black p-14 rounded-lg shadow-lg text-center relative w-full max-w-5xl h-auto max-h-[80vh] overflow-hidden"  // Augmentation du padding
             onClick={(e) => e.stopPropagation()}
           >
-            <div ref={imageRef}>
+            <div ref={imageRef} className="relative">
+              {/* Image dans la modal avec une taille un peu plus petite pour ajouter de l'espace autour */}
               <Image 
                 src={selectedProject.images[currentImageIndex]} 
                 alt={selectedProject.title} 
                 width={800} 
                 height={500} 
+                className="w-[80%] h-[350px] object-cover mx-auto"  // Réduit l'image et ajoute du padding avec "mx-auto" pour la centrer
                 priority 
               />
             </div>
             
             <h2 className="text-3xl font-semibold mt-4">{selectedProject.title}</h2>
-            <p className="text-gray-300 mt-2">{selectedProject.description}</p>
+            <p className="text-white mt-2">{selectedProject.description}</p>
             
-            <div className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer" onClick={handlePrevImage}>
-              <span className="text-white text-3xl">‹</span>
+            {/* Flèches avec un cercle autour et positionnement ajusté pour éviter les chevauchements */}
+            <div 
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-3 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
+              onClick={handlePrevImage}
+            >
+              <span className="text-4xl">‹</span>
             </div>
-            <div className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer" onClick={handleNextImage}>
-              <span className="text-white text-3xl">›</span>
+            <div 
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-3 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
+              onClick={handleNextImage}
+            >
+              <span className="text-4xl">›</span>
             </div>
 
             <button
