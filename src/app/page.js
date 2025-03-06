@@ -103,8 +103,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
-  
-
   return (
     <ReactLenis root>
       <Navbar />
@@ -116,9 +114,7 @@ export default function Home() {
           {neonStyles.map((style, index) => (
             <div
               key={index}
-              className={`absolute blur-2xl opacity-30 animate-pulse ${
-                ["bg-blue-500", "bg-pink-500", "bg-green-500", "bg-teal-400", "bg-purple-400", "bg-yellow-400", "bg-red-500"][index % 7]
-              }`}
+              className={`absolute blur-2xl opacity-30 animate-pulse ${["bg-blue-500", "bg-pink-500", "bg-green-500", "bg-teal-400", "bg-purple-400", "bg-yellow-400", "bg-red-500"][index % 7]}`}
               style={style}
             ></div>
           ))}
@@ -136,7 +132,7 @@ export default function Home() {
           <div className="relative flex flex-col items-center">
             <div className="w-1 bg-gray-500 absolute h-full left-1/2 transform -translate-x-1/2"></div>
             {roadmapData.map((item, index) => (
-              <div key={index} className="roadmap-item flex items-center mb-10 w-full max-w-3xl relative">
+              <div key={index} className="roadmap-item flex flex-col items-center mb-10 w-full max-w-3xl relative">
                 <div className={`${index % 2 === 0 ? "mr-auto text-right" : "ml-auto text-left"} p-4 rounded-lg w-64 shadow-lg`}>
                   <p className="text-sm text-gray-400">{item.year}</p>
                   <h3 className="text-lg font-bold">{item.title}</h3>
@@ -152,16 +148,7 @@ export default function Home() {
         <div className="skills-section h-screen flex flex-col items-center justify-center relative z-10" ref={skillsRef}>
           <h2 className="text-4xl font-bold mb-6">Technical Skills</h2>
           <div className="flex flex-wrap justify-center gap-6 px-4 md:px-0">
-            {[
-              { icon: "fab fa-html5 text-orange-500", label: "HTML" },
-              { icon: "fab fa-css3-alt text-blue-500", label: "CSS" },
-              { icon: "fab fa-js-square text-yellow-500", label: "JavaScript" },
-              { icon: "fab fa-react text-cyan-400", label: "React" },
-              { icon: "fab fa-node-js text-green-500", label: "Node.js (Express)" },
-              { icon: "fab fa-php text-purple-600", label: "PHP" },
-              { icon: "fab fa-bootstrap text-purple-500", label: "Bootstrap" },
-              { icon: <SiTailwindcss className="text-blue-400 mr-2.5" />, label: "Tailwind" },
-            ].map((skill, index) => (
+            {[{ icon: "fab fa-html5 text-orange-500", label: "HTML" }, { icon: "fab fa-css3-alt text-blue-500", label: "CSS" }, { icon: "fab fa-js-square text-yellow-500", label: "JavaScript" }, { icon: "fab fa-react text-cyan-400", label: "React" }, { icon: "fab fa-node-js text-green-500", label: "Node.js (Express)" }, { icon: "fab fa-php text-purple-600", label: "PHP" }, { icon: "fab fa-bootstrap text-purple-500", label: "Bootstrap" }, { icon: <SiTailwindcss className="text-blue-400 mr-2.5" />, label: "Tailwind" }].map((skill, index) => (
               <div key={index} className="skills-item text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
                 {typeof skill.icon === "string" ? <i className={`${skill.icon} text-4xl mr-2.5`}></i> : skill.icon}
                 {skill.label}
