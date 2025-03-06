@@ -35,24 +35,37 @@ export default function Home() {
       height: `${Math.random() * 50 + 50}px`,
       transform: `rotate(${Math.random() * 30 - 15}deg)`,
     }));
-
+  
     setNeonStyles(newNeonStyles);
-
+  
+    // Animation du texte "Ibrahim"
     const heroText = new SplitType(".hero-section h1", { types: "chars" });
-    gsap.set(heroText.chars, { y: 400 });
-
+    gsap.set(heroText.chars, { y: 400, opacity: 0 }); // Définit l'opacité initiale à 0
     gsap.to(heroText.chars, {
       y: 0,
+      opacity: 1, // Transition de l'opacité de 0 à 1
       duration: 0.6,
       stagger: 0.05,
       ease: "power4.out",
       delay: 1,
       onComplete: () => setShowScrollIcon(true),
     });
-
+  
+    // Animation du texte "Full-Stack Developer | Web Enthusiast"
+    const descriptionText = new SplitType(".hero-section p", { types: "chars" });
+    gsap.set(descriptionText.chars, { y: 50, opacity: 0 }); // Définit l'opacité initiale à 0
+    gsap.to(descriptionText.chars, {
+      y: 0,
+      opacity: 1, // Transition de l'opacité de 0 à 1
+      duration: 0.6,
+      stagger: 0.05,
+      ease: "power4.out",
+      delay: 1.5, // Un léger délai pour que cela commence après le titre
+    });
+  
     const roadmapItems = gsap.utils.toArray(".roadmap-item");
     gsap.set(roadmapItems, { opacity: 0, y: 50 });
-
+  
     gsap.to(roadmapItems, {
       opacity: 1,
       y: 0,
@@ -66,10 +79,10 @@ export default function Home() {
         toggleActions: "play none none reset",
       },
     });
-
+  
     const skillsItems = gsap.utils.toArray(".skills-item");
     gsap.set(skillsItems, { opacity: 0, y: 50 });
-
+  
     gsap.to(skillsItems, {
       opacity: 1,
       y: 0,
@@ -83,12 +96,14 @@ export default function Home() {
         toggleActions: "play none none reset",
       },
     });
-
+  
     const handleScroll = () => setScrolling(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
-
+  
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
+  
 
   return (
     <ReactLenis root>
@@ -145,10 +160,10 @@ export default function Home() {
               { icon: "fab fa-node-js text-green-500", label: "Node.js (Express)" },
               { icon: "fab fa-php text-purple-600", label: "PHP" },
               { icon: "fab fa-bootstrap text-purple-500", label: "Bootstrap" },
-              { icon: <SiTailwindcss className="text-blue-400" />, label: "Tailwind" },
+              { icon: <SiTailwindcss className="text-blue-400 mr-2.5" />, label: "Tailwind" },
             ].map((skill, index) => (
               <div key={index} className="skills-item text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-                {typeof skill.icon === "string" ? <i className={`${skill.icon} text-4xl mr-2`}></i> : skill.icon}
+                {typeof skill.icon === "string" ? <i className={`${skill.icon} text-4xl mr-2.5`}></i> : skill.icon}
                 {skill.label}
               </div>
             ))}
