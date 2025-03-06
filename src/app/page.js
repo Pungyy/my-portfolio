@@ -35,9 +35,9 @@ export default function Home() {
       height: `${Math.random() * 50 + 50}px`,
       transform: `rotate(${Math.random() * 30 - 15}deg)`,
     }));
-  
+
     setNeonStyles(newNeonStyles);
-  
+
     // Animation du texte "Ibrahim"
     const heroText = new SplitType(".hero-section h1", { types: "chars" });
     gsap.set(heroText.chars, { y: 400, opacity: 0 }); // Définit l'opacité initiale à 0
@@ -50,7 +50,7 @@ export default function Home() {
       delay: 1,
       onComplete: () => setShowScrollIcon(true),
     });
-  
+
     // Animation du texte "Full-Stack Developer | Web Enthusiast"
     const descriptionText = new SplitType(".hero-section p", { types: "chars" });
     gsap.set(descriptionText.chars, { y: 50, opacity: 0 }); // Définit l'opacité initiale à 0
@@ -62,10 +62,10 @@ export default function Home() {
       ease: "power4.out",
       delay: 1.5, // Un léger délai pour que cela commence après le titre
     });
-  
+
     const roadmapItems = gsap.utils.toArray(".roadmap-item");
     gsap.set(roadmapItems, { opacity: 0, y: 50 });
-  
+
     gsap.to(roadmapItems, {
       opacity: 1,
       y: 0,
@@ -79,10 +79,10 @@ export default function Home() {
         toggleActions: "play none none reset",
       },
     });
-  
+
     const skillsItems = gsap.utils.toArray(".skills-item");
     gsap.set(skillsItems, { opacity: 0, y: 50 });
-  
+
     gsap.to(skillsItems, {
       opacity: 1,
       y: 0,
@@ -96,13 +96,13 @@ export default function Home() {
         toggleActions: "play none none reset",
       },
     });
-  
+
     const handleScroll = () => setScrolling(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   return (
     <ReactLenis root>
       <Navbar />
@@ -126,8 +126,8 @@ export default function Home() {
           <p className="text-2xl mt-4">Full-Stack Developer | Web Enthusiast</p>
         </div>
 
-        {/* Section Roadmap */}
-        <div className="relative text-white min-h-screen p-10" ref={roadmapRef}>
+        {/* Section Roadmap pour les grands écrans */}
+        <div className="relative text-white min-h-screen p-10 hidden md:block" ref={roadmapRef}>
           <h2 className="text-4xl font-bold text-center mb-10">My Career Path</h2>
           <div className="relative flex flex-col items-center">
             <div className="w-1 bg-gray-500 absolute h-full left-1/2 transform -translate-x-1/2"></div>
@@ -139,6 +139,22 @@ export default function Home() {
                   <p className="text-sm">{item.company}</p>
                 </div>
                 <div className="w-4 h-4 bg-white rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Section Roadmap en version mobile */}
+        <div className="relative text-white min-h-screen p-10 md:hidden">
+          <h2 className="text-4xl font-bold text-center mb-10">My Career Path</h2>
+          <div className="relative flex flex-col items-center">
+            {roadmapData.map((item, index) => (
+              <div key={index} className="roadmap-item flex flex-col items-center text-center mb-10 w-full max-w-3xl relative">
+                <div className="p-4 rounded-lg w-full shadow-lg mb-4">
+                  <p className="text-sm text-white">{item.year}</p>
+                  <h3 className="text-lg font-bold">{item.title}</h3>
+                  <p className="text-sm">{item.company}</p>
+                </div>
               </div>
             ))}
           </div>
