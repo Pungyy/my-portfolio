@@ -11,26 +11,29 @@ import GlowCursor from "../components/GlowCursor"; // Import du composant GlowCu
 
 gsap.registerPlugin(ScrollTrigger);
 
+const roadmapData = [
+  { year: "2021 - 2023", title: "Institut G4", company: "Web Application Design & Development" },
+  { year: "2021 - 2023", title: "Web Developer", company: "Novances IT" },
+  { year: "2024 - Present", title: "Full-Stack Developer", company: "One System" },
+  { year: "2024 - 2027", title: "My Digital School Lyon", company: "Full-Stack Web Developer" },
+];
+
 export default function Home() {
   const container = useRef();
   const roadmapRef = useRef();
-  const educationRef = useRef();
+  const skillsRef = useRef();
   const scrollIconRef = useRef();
   const [neonStyles, setNeonStyles] = useState([]);
   const [scrolling, setScrolling] = useState(false);
   const [showScrollIcon, setShowScrollIcon] = useState(false);
 
-  const randomPosition = (min, max) => Math.random() * (max - min) + min;
-  const randomSize = (min, max) => Math.random() * (max - min) + min;
-  const randomRotation = (min, max) => Math.random() * (max - min) + min;
-
   useEffect(() => {
     const newNeonStyles = Array.from({ length: 12 }).map(() => ({
-      top: `${randomPosition(5, 80)}%`,
-      left: `${randomPosition(5, 80)}%`,
-      width: `${randomSize(50, 100)}px`,
-      height: `${randomSize(50, 100)}px`,
-      transform: `rotate(${randomRotation(-15, 15)}deg)`,
+      top: `${Math.random() * 75 + 5}%`,
+      left: `${Math.random() * 75 + 5}%`,
+      width: `${Math.random() * 50 + 50}px`,
+      height: `${Math.random() * 50 + 50}px`,
+      transform: `rotate(${Math.random() * 30 - 15}deg)`,
     }));
 
     setNeonStyles(newNeonStyles);
@@ -44,20 +47,7 @@ export default function Home() {
       stagger: 0.05,
       ease: "power4.out",
       delay: 1,
-      onComplete: () => {
-        setShowScrollIcon(true);
-      },
-    });
-
-    const heroSubText = new SplitType(".hero-section p", { types: "chars" });
-    gsap.set(heroSubText.chars, { y: 400 });
-
-    gsap.to(heroSubText.chars, {
-      y: 0,
-      duration: 0.001,
-      stagger: 0.05,
-      ease: "power4.out",
-      delay: 1.4,
+      onComplete: () => setShowScrollIcon(true),
     });
 
     const roadmapItems = gsap.utils.toArray(".roadmap-item");
@@ -77,56 +67,28 @@ export default function Home() {
       },
     });
 
-    const educationItems = gsap.utils.toArray(".education-item");
-    gsap.set(educationItems, { opacity: 0, y: 50 });
+    const skillsItems = gsap.utils.toArray(".skills-item");
+    gsap.set(skillsItems, { opacity: 0, y: 50 });
 
-    gsap.to(educationItems, {
+    gsap.to(skillsItems, {
       opacity: 1,
       y: 0,
       duration: 1,
-      stagger: 0.3,
+      stagger: 0.2,
       ease: "power4.out",
       scrollTrigger: {
-        trigger: educationRef.current,
+        trigger: skillsRef.current,
         start: "top 80%",
         end: "bottom 20%",
         toggleActions: "play none none reset",
       },
     });
 
-    gsap.fromTo(
-      scrollIconRef.current,
-      { y: 0 },
-      {
-        y: 20,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.5,
-        ease: "power1.inOut",
-      }
-    );
-
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
-    };
-
+    const handleScroll = () => setScrolling(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <ReactLenis root>
@@ -134,80 +96,62 @@ export default function Home() {
       <GlowCursor />
 
       <div className="relative bg-black text-white overflow-hidden min-h-screen">
+        {/* Effet néon */}
         <div className="absolute inset-0 pointer-events-none">
           {neonStyles.map((style, index) => (
             <div
               key={index}
-              className={`absolute blur-2xl opacity-30 animate-pulse 
-                ${index % 7 === 0 ? "bg-blue-500" : ""}
-                ${index % 7 === 1 ? "bg-pink-500" : ""}
-                ${index % 7 === 2 ? "bg-green-500" : ""}
-                ${index % 7 === 3 ? "bg-teal-400" : ""}
-                ${index % 7 === 4 ? "bg-purple-400" : ""}
-                ${index % 7 === 5 ? "bg-yellow-400" : ""}
-                ${index % 7 === 6 ? "bg-red-500" : ""}`}
+              className={`absolute blur-2xl opacity-30 animate-pulse ${
+                ["bg-blue-500", "bg-pink-500", "bg-green-500", "bg-teal-400", "bg-purple-400", "bg-yellow-400", "bg-red-500"][index % 7]
+              }`}
               style={style}
             ></div>
           ))}
         </div>
 
+        {/* Section Hero */}
         <div className="hero-section h-screen flex flex-col items-center justify-center relative z-10" ref={container}>
           <h1 className="text-8xl md:text-9xl font-extrabold tracking-wide text-center">Ibrahim</h1>
           <p className="text-2xl mt-4">Full-Stack Developer | Web Enthusiast</p>
         </div>
 
-        <div className="roadmap-section h-screen flex flex-col items-center justify-center relative z-10" ref={roadmapRef}>
-          <h2 className="text-4xl font-bold mb-6">Professional Experience</h2>
-          <div className="space-y-4 text-xl max-w-3xl">
-            <div className="roadmap-item">
-              <strong>Full-Stack Developer</strong> at One System (Oct 2024 - Aug 2025)
-            </div>
-            <div className="roadmap-item">
-              <strong>Web Developer</strong> at Novances IT (Nov 2021 - Jun 2023)
-            </div>
+        {/* Section Roadmap */}
+        <div className="relative text-white min-h-screen p-10" ref={roadmapRef}>
+          <h2 className="text-4xl font-bold text-center mb-10">My Career Path</h2>
+          <div className="relative flex flex-col items-center">
+            <div className="w-1 bg-gray-500 absolute h-full left-1/2 transform -translate-x-1/2"></div>
+            {roadmapData.map((item, index) => (
+              <div key={index} className="roadmap-item flex items-center mb-10 w-full max-w-3xl relative">
+                <div className={`${index % 2 === 0 ? "mr-auto text-right" : "ml-auto text-left"} p-4 rounded-lg w-64 shadow-lg`}>
+                  <p className="text-sm text-gray-400">{item.year}</p>
+                  <h3 className="text-lg font-bold">{item.title}</h3>
+                  <p className="text-sm">{item.company}</p>
+                </div>
+                <div className="w-4 h-4 bg-purple-400 rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="education-section h-screen flex flex-col items-center justify-center relative z-10" ref={educationRef}>
-          <h2 className="text-4xl font-bold mb-6">Education</h2>
-          <div className="space-y-4 text-xl max-w-3xl">
-            <div className="education-item">
-              <strong>My Digital School Lyon</strong> - Full-Stack Web Developer (Sept 2024 - Oct 2025)
-            </div>
-            <div className="education-item">
-              <strong>Institut G4</strong> - Web Application Design & Development (Sept 2021 - May 2023)
-            </div>
-          </div>
-        </div>
-
-        <div className="skills-section h-screen flex flex-col items-center justify-center relative z-10">
+        {/* Section Skills */}
+        <div className="skills-section h-screen flex flex-col items-center justify-center relative z-10" ref={skillsRef}>
           <h2 className="text-4xl font-bold mb-6">Technical Skills</h2>
           <div className="flex flex-wrap justify-center gap-6 px-4 md:px-0">
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-html5 text-orange-500 text-4xl mr-2"></i> HTML
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-css3-alt text-blue-500 text-4xl mr-2"></i> CSS
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-js-square text-yellow-500 text-4xl mr-2"></i> JavaScript
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-react text-cyan-400 text-4xl mr-2"></i> React
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-node-js text-green-500 text-4xl mr-2"></i> Node.js (Express)
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-php text-purple-600 text-4xl mr-2"></i> PHP
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <i className="fab fa-bootstrap text-purple-500 text-4xl mr-2"></i> Bootstrap
-            </div>
-            <div className="text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
-              <SiTailwindcss className="text-blue-400 text-4xl mr-2" />
-              Tailwind
-            </div>
+            {[
+              { icon: "fab fa-html5 text-orange-500", label: "HTML" },
+              { icon: "fab fa-css3-alt text-blue-500", label: "CSS" },
+              { icon: "fab fa-js-square text-yellow-500", label: "JavaScript" },
+              { icon: "fab fa-react text-cyan-400", label: "React" },
+              { icon: "fab fa-node-js text-green-500", label: "Node.js (Express)" },
+              { icon: "fab fa-php text-purple-600", label: "PHP" },
+              { icon: "fab fa-bootstrap text-purple-500", label: "Bootstrap" },
+              { icon: <SiTailwindcss className="text-blue-400" />, label: "Tailwind" },
+            ].map((skill, index) => (
+              <div key={index} className="skills-item text-xl flex items-center p-4 w-1/2 sm:w-1/4 md:w-1/4 justify-center">
+                {typeof skill.icon === "string" ? <i className={`${skill.icon} text-4xl mr-2`}></i> : skill.icon}
+                {skill.label}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -215,7 +159,7 @@ export default function Home() {
         {showScrollIcon && !scrolling && (
           <div
             ref={scrollIconRef}
-            onClick={scrollToBottom}
+            onClick={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" })}
             className="fixed bottom-20 left-1/2 transform -translate-x-1/2 text-white text-3xl w-16 h-16 flex items-center justify-center border-4 border-white rounded-full cursor-pointer"
           >
             <i className="fas fa-chevron-down"></i>
