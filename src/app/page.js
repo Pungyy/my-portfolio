@@ -127,7 +127,7 @@ export default function Home() {
                   <h3 className="text-lg font-bold">{item.title}</h3>
                   <p className="text-sm">{item.company}</p>
                 </div>
-                <div className="w-4 h-4 bg-purple-400 rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
+                <div className="w-4 h-4 bg-white rounded-full absolute left-1/2 transform -translate-x-1/2"></div>
               </div>
             ))}
           </div>
