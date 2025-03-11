@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="fr">
         <body className="relative bg-black text-white">
           <GlowCursor />
           <Navbar />

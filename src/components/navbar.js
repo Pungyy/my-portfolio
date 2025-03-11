@@ -43,7 +43,7 @@ const Navbar = () => {
     }
 
     return(
-        <nav className="nav">
+        <nav className="nav bg-black md:bg-transparent fixed top-0 w-full p-4 z-50">
             <div className="logo">
                 <div className="link">
                     <a 
