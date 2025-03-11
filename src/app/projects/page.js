@@ -15,31 +15,31 @@ const projects = [
   { 
     id: 2, 
     title: "Pizza Project", 
-    description: "Description du projet 2.", 
+    description: "Description of project 2.", 
     images: ["/pizza/pizza.png", "/pizza/pizza2.png", "/pizza/pizza3.png", "/pizza/pizza4.png", "/pizza/pizza5.png"]
   },
   { 
     id: 3, 
-    title: "Projet 3", 
-    description: "Description du projet 3.", 
+    title: "Project 3", 
+    description: "Description of project 3.", 
     images: ["/escape/escape.png"]
   },
   { 
     id: 4, 
-    title: "Projet 3", 
-    description: "Description du projet 3.", 
+    title: "Project 4", 
+    description: "Description of project 4.", 
     images: ["/escape/escape.png"]
   },
   { 
     id: 5, 
-    title: "Projet 3", 
-    description: "Description du projet 3.", 
+    title: "Project 5", 
+    description: "Description of project 5.", 
     images: ["/traiteur.png"]
   },
   { 
     id: 6, 
-    title: "Projet 3", 
-    description: "Description du projet 3.", 
+    title: "Project 6", 
+    description: "Description of project 6.", 
     images: ["/escape/escape.png"]
   },
 ];
@@ -117,7 +117,7 @@ const Projects = () => {
                 alt={selectedProject.title} 
                 width={800} 
                 height={500} 
-                className="w-[80%] h-[350px] object-cover mx-auto"  // Réduit l'image et ajoute du padding avec "mx-auto" pour la centrer
+                className="w-[100%] h-[350px] object-cover mx-auto"  // Réduit l'image et ajoute du padding avec "mx-auto" pour la centrer
                 priority 
               />
             </div>
@@ -127,13 +127,13 @@ const Projects = () => {
             
             {/* Flèches avec un cercle autour et positionnement ajusté pour éviter les chevauchements */}
             <div 
-              className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-3 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-1.5 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
               onClick={handlePrevImage}
             >
               <span className="text-4xl">‹</span>
             </div>
             <div 
-              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-3 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-1.5 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
               onClick={handleNextImage}
             >
               <span className="text-4xl">›</span>
@@ -143,7 +143,7 @@ const Projects = () => {
               className="mt-6 px-6 py-3 bg-red-600 rounded-lg"
               onClick={handleCloseModal}
             >
-              Fermer
+              Close
             </button>
           </div>
         </div>
