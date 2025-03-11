@@ -107,19 +107,20 @@ const Info = () => {
     // Pass the form reference as the third parameter
     emailjs
       .sendForm(
-        "service_x2l1ilq",  // Service ID
-        "template_y3he5x9",  // Template ID
-        formRef.current,      // Pass the form element
-        "si5fFBZ6O48KSc0v3"  // Public key
+        "service_x2l1ilq",
+        "template_y3he5x9",
+        formRef.current,
+        "si5fFBZ6O48KSc0v3"
       )
       .then(
         (result) => {
           setStatusMessage("Message sent successfully!");
-          console.log(result);  // Show result for debugging
+          formRef.current.reset();
+          console.log(result);
         },
         (error) => {
           setStatusMessage("Error sending message. Please try again.");
-          console.log("Error details:", error);  // Show error details for debugging
+          console.log("Error details:", error);
         }
       );
   };
@@ -213,7 +214,7 @@ const Info = () => {
 
       <div
         ref={scrollIconRef}
-        onClick={scrollToBottom} // Scroll to bottom on click
+        onClick={scrollToBottom}
         className="fixed bottom-20 left-1/2 transform -translate-x-1/2 text-white text-3xl w-16 h-16 flex items-center justify-center border-4 border-white rounded-full cursor-pointer"
       >
         <i className="fas fa-chevron-down"></i>

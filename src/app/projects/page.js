@@ -77,7 +77,7 @@ const Projects = () => {
   }, [currentImageIndex]);
 
   return (
-    <div className="mt-8 min-h-screen bg-black text-white flex flex-col items-center justify-center p-10">
+    <div className="mt-20 sm:mt-8 min-h-screen bg-black text-white flex flex-col items-center justify-center p-10">
       <h1 className="text-3xl font-bold mb-8">MY PROJECTS</h1>
       
       {/* Grille de projets */}
