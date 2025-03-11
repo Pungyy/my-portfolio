@@ -68,14 +68,14 @@ export default function Home() {
     gsap.to(roadmapItems, {
       opacity: 1,
       y: 0,
-      duration: 1,
-      stagger: 0.3,
-      ease: "power4.out",
+      duration: 0.8, // Réduit la durée pour une animation plus rapide
+      stagger: 0.15, // Diminue l'intervalle entre les animations
+      ease: "power3.out", // Rend l'animation plus fluide
       scrollTrigger: {
         trigger: roadmapRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reset",
+        start: "top 95%", // Déclenche plus tôt sur mobile
+        end: "bottom 50%", // Permet un déroulement plus fluide
+        toggleActions: "play none none none", // Évite une réinitialisation inutile
       },
     });
 
