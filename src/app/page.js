@@ -121,8 +121,8 @@ export default function Home() {
 
         {/* Section Hero */}
         <div className="hero-section h-screen flex flex-col items-center justify-center relative z-10" ref={container}>
-          <h1 className="text-8xl md:text-9xl font-extrabold tracking-wide text-center">Ibrahim</h1>
-          <p className="text-2xl mt-4">Full-Stack Developer | Web Enthusiast</p>
+          <h1 className="text-6xl md:text-9xl font-extrabold tracking-wide text-center">Ibrahim</h1>
+          <p className="text-1xl md:text-3xl mt-4">Full-Stack Developer | Web Enthusiast</p>
         </div>
 
         {/* Section Roadmap pour les grands écrans */}

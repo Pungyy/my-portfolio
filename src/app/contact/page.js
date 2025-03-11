@@ -154,9 +154,6 @@ const Info = () => {
         </div>
       </div>
 
-
-
-
       <section className="contact-section bg-black text-white py-16 flex items-center justify-center h-screen">
         <div className="max-w-5xl w-full mx-auto px-4">
           <h2 className="text-4xl font-semibold mb-8 text-center">CONTACT ME</h2>
