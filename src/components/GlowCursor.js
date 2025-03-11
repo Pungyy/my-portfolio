@@ -6,6 +6,7 @@ function GlowCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
   const [rgbColor, setRgbColor] = useState("rgb(255, 0, 0)"); // Valeur initiale de la couleur RGB pour l'ombre
+  const [isVisible, setIsVisible] = useState(true); // Nouvel état pour gérer la visibilité
 
   // Fonction pour générer une couleur RGB aléatoire
   const getRandomColor = () => {
@@ -28,15 +29,30 @@ function GlowCursor() {
   };
 
   useEffect(() => {
+    const updateVisibility = () => {
+      setIsVisible(window.innerWidth >= 768);
+    };
+
+    updateVisibility();
+    window.addEventListener("resize", updateVisibility);
+
+    return () => window.removeEventListener("resize", updateVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isVisible]);
 
   useEffect(() => {
+    if (!isVisible) return;
+
     let animationFrame;
 
     const smoothMove = () => {
@@ -55,17 +71,20 @@ function GlowCursor() {
     smoothMove();
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [position]);
+  }, [position, isVisible]);
 
-  // Changer la couleur de l'ombre progressivement
   useEffect(() => {
+    if (!isVisible) return;
+
     const interval = setInterval(() => {
       const newColor = getRandomColor();
       setRgbColor((prevColor) => interpolateColor(prevColor, newColor, 0.1)); // Interpolation douce
     }, 100);
 
     return () => clearInterval(interval); // Nettoyage de l'intervalle lorsque le composant est démonté
-  }, []);
+  }, [isVisible]);
+
+  if (!isVisible) return null; // Ne pas afficher le curseur si désactivé
 
   return (
     <div

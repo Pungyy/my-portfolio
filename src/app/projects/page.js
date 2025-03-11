@@ -78,8 +78,8 @@ const Projects = () => {
   }, [currentImageIndex]);  // L'animation se déclenche chaque fois que l'index de l'image change
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-10">
-      <h1 className="text-3xl font-bold mb-6">MY PROJECTS</h1>
+    <div className="mt-8 min-h-screen bg-black text-white flex flex-col items-center justify-center p-10">
+      <h1 className="text-3xl font-bold mb-8">MY PROJECTS</h1>
       
       {/* Grille de projets */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
