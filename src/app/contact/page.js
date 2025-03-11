@@ -139,20 +139,25 @@ const Info = () => {
         rel="stylesheet"
       />
 
-      <div className="info flex items-center justify-center min-h-screen" ref={container}>
-        <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0">
-          <div className="col flex justify-center mt-10 md:mt-0">
-            <img src="/pungy.png" alt="Profile Picture" className="w-[90%] h-auto md:w-[90%] md:h-auto rounded-full" />
-          </div>
-          <div className="col text-center md:text-left px-4 md:px-0">
-            <p>
-              Hello! I'm Ibrahim, a Full-Stack Developer with experience in frontend technologies like HTML, CSS, and JavaScript.
-              I've worked as a Web Developer at Novances IT and a Full-Stack Developer at One System. Currently,
-              I'm advancing my skills at My Digital School Lyon to become a stronger web developer.
-            </p>
-          </div>
-        </div>
-      </div>
+<div className="info flex items-center justify-center min-h-screen px-4" ref={container}>
+  <div className="flex flex-col md:flex-row items-center md:items-center justify-around w-full">
+    {/* Image */}
+    <div className="flex justify-center mt-10 md:mt-0 md:w-1/2">
+      <img src="/pungy.png" alt="Profile Picture" className="w-[90%] h-auto md:w-[80%] rounded-full" />
+    </div>
+
+    {/* Texte (aligné au centre verticalement) */}
+    <div className="text-center text-sm sm:text-xl md:text-2xl px-4 md:px-0 md:w-1/2 flex items-center">
+      <p>
+        Hello! I'm Ibrahim, a Full-Stack Developer with experience in frontend technologies like HTML, CSS, and JavaScript.
+        I've worked as a Web Developer at Novances IT and a Full-Stack Developer at One System. Currently,
+        I'm advancing my skills at My Digital School Lyon to become a stronger web developer.
+      </p>
+    </div>
+  </div>
+</div>
+
+
 
       <section className="contact-section bg-black text-white py-16 flex items-center justify-center h-screen">
         <div className="max-w-5xl w-full mx-auto px-4">
