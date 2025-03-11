@@ -47,7 +47,7 @@ const projects = [
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0); 
-  const imageRef = useRef(null);  // Référence à l'image pour l'animation GSAP
+  const imageRef = useRef(null);
 
   const handleProjectClick = useCallback((project) => {
     setSelectedProject(project);
@@ -66,16 +66,15 @@ const Projects = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1));
   };
 
-  // Animer l'image à chaque fois que l'index de l'image change
   useEffect(() => {
     if (imageRef.current) {
       gsap.fromTo(
         imageRef.current,
-        { opacity: 0, scale: 0.8 }, // état initial de l'animation
-        { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" } // état final de l'animation
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }
       );
     }
-  }, [currentImageIndex]);  // L'animation se déclenche chaque fois que l'index de l'image change
+  }, [currentImageIndex]);
 
   return (
     <div className="mt-8 min-h-screen bg-black text-white flex flex-col items-center justify-center p-10">

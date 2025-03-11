@@ -78,20 +78,20 @@ function GlowCursor() {
 
     const interval = setInterval(() => {
       const newColor = getRandomColor();
-      setRgbColor((prevColor) => interpolateColor(prevColor, newColor, 0.1)); // Interpolation douce
+      setRgbColor((prevColor) => interpolateColor(prevColor, newColor, 0.1));
     }, 100);
 
-    return () => clearInterval(interval); // Nettoyage de l'intervalle lorsque le composant est démonté
+    return () => clearInterval(interval);
   }, [isVisible]);
 
-  if (!isVisible) return null; // Ne pas afficher le curseur si désactivé
+  if (!isVisible) return null;
 
   return (
     <div
       className="fixed top-0 left-0 w-12 h-12 bg-black rounded-full opacity-100 pointer-events-none"
       style={{
         transform: `translate(${smoothPosition.x - 24}px, ${smoothPosition.y - 24}px)`,
-        boxShadow: `0 0 40px 10px ${rgbColor}`, // Ombre RGB dynamique avec un gradient
+        boxShadow: `0 0 40px 10px ${rgbColor}`,
         zIndex: 9,
       }}
     />
