@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <ViewTransitions>
       <html lang="fr">
-        <body className="relative bg-black text-white overflow-hidden">
+        <body className="relative bg-black text-white">
           <GlowCursor />
           <Navbar />
           {children}
