@@ -1,47 +1,46 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import Image from "next/image";  // Utilisation de Image de Next.js pour le chargement optimisé des images
-import { gsap } from "gsap";  // Importation de GSAP pour les animations
+import Image from "next/image";
+import { gsap } from "gsap";
 
 const projects = [
   { 
     id: 1, 
     title: "Mercadie Project", 
     description: "Languages : HTML, CSS, JavaScript, jQuery, PHP", 
-    images: ["/mercadie/mercadie1.png", "/mercadie/mercadie2.png", "/mercadie/mercadie3.png", "/mercadie/mercadie4.png", "/mercadie/mercadie5.png" , "/mercadie/mercadie6.png" ,"/mercadie/mercadie8.png",
-          "/mercadie/mercadie9.png", "/mercadie/mercadie10.png", "/mercadie/mercadie11.png", "/mercadie/mercadie12.png"]
+    images: ["/mercadie/mercadie1.png", "/mercadie/mercadie2.png", "/mercadie/mercadie3.png"]
   },
   { 
     id: 2, 
-    title: "Pizza Project", 
-    description: "Description of project 2.", 
-    images: ["/pizza/pizza.png", "/pizza/pizza2.png", "/pizza/pizza3.png", "/pizza/pizza4.png", "/pizza/pizza5.png"]
+    title: "English Game", 
+    description: "For our English Game competition, we ranked first in Lyon among 26 groups and made it to the national top 6. Our project consisted of creating an educational board game that combined both a physical and a digital component. We also had to showcase our game in a trailer.", 
+    images: ["/hakked/hakked.mp4"]
   },
   { 
     id: 3, 
-    title: "Project 3", 
-    description: "Description of project 3.", 
-    images: ["/escape/escape.png"]
+    title: "Stars Project", 
+    description: "As part of a group project in class, we worked on designing a 'Pole des Étoiles' in Lyon. We created various elements, including a store, a contact page, and articles, to bring the concept to life.", 
+    images: ["/etoile/etoile1.png", "/etoile/etoile2.png", "/etoile/etoile3.png", "/etoile/etoile4.png", "/etoile/etoile5.png", "/etoile/etoile6.png", "/etoile/etoile7.png"]
   },
   { 
     id: 4, 
-    title: "Project 4", 
+    title: "C# Project", 
     description: "Description of project 4.", 
-    images: ["/escape/escape.png"]
+    images: ["/c/c1.PNG", "/c/c2.png", "/c/c3.png", "/c/c4.png", "/c/c5.png", "/c/c6.png"]
   },
   { 
     id: 5, 
     title: "Project 5", 
     description: "Description of project 5.", 
-    images: ["/traiteur.png"]
+    images: ["/pizza/pizza2.png", "/pizza/pizza3.png", "/pizza/pizza4.png", "/pizza/pizza5.png"]
   },
   { 
     id: 6, 
     title: "Project 6", 
-    description: "Description of project 6.", 
-    images: ["/escape/escape.png"]
-  },
+    description: "Description of project 5.", 
+    images: ["/arthur/traiteur.png"]
+  }
 ];
 
 const Projects = () => {
@@ -51,7 +50,7 @@ const Projects = () => {
 
   const handleProjectClick = useCallback((project) => {
     setSelectedProject(project);
-    setCurrentImageIndex(0); 
+    setCurrentImageIndex(0);
   }, []);
 
   const handleCloseModal = useCallback(() => {
@@ -59,11 +58,15 @@ const Projects = () => {
   }, []);
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? selectedProject.images.length - 1 : prevIndex - 1));
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? selectedProject.images.length - 1 : prevIndex - 1
+    );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   useEffect(() => {
@@ -88,15 +91,26 @@ const Projects = () => {
             className="cursor-pointer rounded-lg shadow-lg hover:scale-105 transition-transform"
             onClick={() => handleProjectClick(project)}
           >
-            {/* Image de la grille avec largeur et hauteur fixes */}
-            <Image 
-              src={project.images[0]} 
-              alt={project.title} 
-              width={500} 
-              height={300} 
-              className="w-full h-[200px] object-cover rounded-lg" // Fixe la taille, responsive et garde le ratio
-              priority
-            />
+            {/* Affichage de la première image ou vidéo en miniature */}
+            {project.images[0].endsWith('.mp4') ? (
+              <video 
+                className="w-full h-[200px] object-cover rounded-lg"
+                muted
+                loop
+                autoPlay
+              >
+                <source src={project.images[0]} type="video/mp4" />
+              </video>
+            ) : (
+              <Image 
+                src={project.images[0]} 
+                alt={project.title} 
+                width={500} 
+                height={300} 
+                className="w-full h-[200px] object-cover rounded-lg"
+                priority
+              />
+            )}
           </div>
         ))}
       </div>
@@ -107,37 +121,51 @@ const Projects = () => {
           onClick={handleCloseModal}
         >
           <div 
-            className="bg-black p-14 rounded-lg shadow-lg text-center relative w-full max-w-5xl h-auto max-h-[80vh] overflow-hidden"  // Augmentation du padding
+            className="bg-black p-14 rounded-lg shadow-lg text-center relative w-full max-w-5xl h-auto max-h-[80vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div ref={imageRef} className="relative">
-              {/* Image dans la modal avec une taille un peu plus petite pour ajouter de l'espace autour */}
-              <Image 
-                src={selectedProject.images[currentImageIndex]} 
-                alt={selectedProject.title} 
-                width={800} 
-                height={500} 
-                className="w-[100%] h-[350px] object-cover mx-auto"  // Réduit l'image et ajoute du padding avec "mx-auto" pour la centrer
-                priority 
-              />
+              {/* Vérification si l'élément est une vidéo ou une image */}
+              {selectedProject.images[currentImageIndex].endsWith('.mp4') ? (
+                <video 
+                  className="w-full h-[350px] object-cover mx-auto"
+                  controls
+                  autoPlay
+                >
+                  <source src={selectedProject.images[currentImageIndex]} type="video/mp4" />
+                </video>
+              ) : (
+                <Image 
+                  src={selectedProject.images[currentImageIndex]} 
+                  alt={selectedProject.title} 
+                  width={800} 
+                  height={500} 
+                  className="w-full h-[350px] object-cover mx-auto"
+                  priority 
+                />
+              )}
             </div>
             
             <h2 className="text-3xl font-semibold mt-4">{selectedProject.title}</h2>
             <p className="text-white mt-2">{selectedProject.description}</p>
             
-            {/* Flèches avec un cercle autour et positionnement ajusté pour éviter les chevauchements */}
-            <div 
-              className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-1.5 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
-              onClick={handlePrevImage}
-            >
-              <span className="text-4xl">‹</span>
-            </div>
-            <div 
-              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-1.5 rounded-full shadow-lg z-10"  // z-10 pour que les flèches soient au-dessus de l'image
-              onClick={handleNextImage}
-            >
-              <span className="text-4xl">›</span>
-            </div>
+            {/* Boutons pour naviguer entre les médias */}
+            {selectedProject.images.length > 1 && (
+              <>
+                <div 
+                  className="absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-1.5 rounded-full shadow-lg z-10"
+                  onClick={handlePrevImage}
+                >
+                  <span className="text-4xl">‹</span>
+                </div>
+                <div 
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer bg-white text-black p-1.5 rounded-full shadow-lg z-10"
+                  onClick={handleNextImage}
+                >
+                  <span className="text-4xl">›</span>
+                </div>
+              </>
+            )}
 
             <button
               className="mt-6 px-6 py-3 bg-red-600 rounded-lg"
