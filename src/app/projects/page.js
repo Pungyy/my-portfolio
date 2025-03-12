@@ -8,8 +8,8 @@ const projects = [
   { 
     id: 1, 
     title: "Mercadie Project", 
-    description: "Languages : HTML, CSS, JavaScript, jQuery, PHP", 
-    images: ["/mercadie/mercadie1.png", "/mercadie/mercadie2.png", "/mercadie/mercadie3.png"]
+    description: "As part of a project for my company, we designed a modern and dynamic website for a law firm, blending themes of justice and space. The objective was to create a unique and engaging digital presence that conveyed both professionalism and innovation. The website featured a sleek, futuristic design with cosmic-inspired elements to symbolize clarity, balance, and vast possibilities—core values in the field of justice. We developed key sections, including the homepage, a contact page, and service descriptions. Every detail was carefully crafted to offer an intuitive user experience while maintaining a strong and trustworthy brand identity. Languages : HTML, CSS, JavaScript, jQuery, PHP", 
+    images: ["/mercadie/mercadie1.png", "/mercadie/mercadie2.png", "/mercadie/mercadie3.png", "/mercadie/mercadie4.png", "/mercadie/mercadie5.png", "/mercadie/mercadie6.png", "/mercadie/mercadie8.png", "/mercadie/mercadie9.png", "/mercadie/mercadie10.png" , "/mercadie/mercadie11.png", "/mercadie/mercadie12.png"]
   },
   { 
     id: 2, 
