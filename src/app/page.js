@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import Navbar from "../components/navbar";
 import { SiTailwindcss } from "react-icons/si";
-import GlowCursor from "../components/GlowCursor"; // Import du composant GlowCursor
+import GlowCursor from "../components/GlowCursor";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +28,7 @@ export default function Home() {
   const [showScrollIcon, setShowScrollIcon] = useState(false);
 
   useEffect(() => {
+    
     const newNeonStyles = Array.from({ length: 12 }).map(() => ({
       top: `${Math.random() * 75 + 5}%`,
       left: `${Math.random() * 75 + 5}%`,
