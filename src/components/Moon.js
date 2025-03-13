@@ -47,8 +47,8 @@ function Stars() {
   // Animation des étoiles
   useFrame(() => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += 0.00100; // Rotation subtile
-      pointsRef.current.rotation.x += 0.00002;
+      pointsRef.current.rotation.y += 0.00050; // Rotation subtile
+      pointsRef.current.rotation.x += 0.00050;
     }
   });
 
@@ -62,7 +62,7 @@ function Stars() {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.5} color="white" transparent opacity={0.8} />
+      <pointsMaterial size={0.5} color="white" transparent opacity={0.9} />
     </points>
   );
 }
@@ -72,14 +72,10 @@ export default function MoonScene() {
   return (
     <div className="fixed inset-0 -z-50">
       <Canvas camera={{ position: [0, 0, 20] }}>
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
-        
-        {/* Ajouter les étoiles à la scène */}
-        <Stars />
-        
-        {/* Ajouter la lune à la scène */}
         <Moon />
+        <Stars />
       </Canvas>
     </div>
   );
