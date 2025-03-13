@@ -15,7 +15,7 @@ const projects = [
     id: 2, 
     title: "English Game", 
     description: "For our English Game competition, we ranked first in Lyon among 26 groups and made it to the national top 6. Our project consisted of creating an educational board game that combined both a physical and a digital component. We also had to showcase our game in a trailer.", 
-    images: ["/hakked/hakked.mp4"]
+    images: ["/hakked/hakked.png" ,"/hakked/hakked.mp4"]
   },
   { 
     id: 3, 
@@ -84,7 +84,7 @@ const Projects = () => {
       <h1 className="text-3xl font-bold mb-8">MY PROJECTS</h1>
       
       {/* Grille de projets */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16">
         {projects.map((project) => (
           <div
             key={project.id}
@@ -107,7 +107,7 @@ const Projects = () => {
                 alt={project.title} 
                 width={500} 
                 height={300} 
-                className="w-full h-[200px] object-cover rounded-lg"
+                className="w-[250px] h-[200px] object-cover rounded-lg"
                 priority
               />
             )}
