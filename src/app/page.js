@@ -13,10 +13,10 @@ import MoonScene from "@/components/Moon";
 gsap.registerPlugin(ScrollTrigger);
 
 const roadmapData = [
-  { year: "2021 - 2023", title: "Institut G4", company: "Web Application Design & Development" },
+  { year: "2021 - 2023", title: "Web Application Design & Development", company: "Institut G4" },
   { year: "2021 - 2023", title: "Web Developer", company: "Novances IT" },
   { year: "2024 - Present", title: "Full-Stack Developer", company: "One System" },
-  { year: "2024 - 2027", title: "My Digital School Lyon", company: "Full-Stack Web Developer" },
+  { year: "2024 - 2027", title: "Full-Stack Web Developer", company: "My Digital School Lyon" },
 ];
 
 export default function Home() {
