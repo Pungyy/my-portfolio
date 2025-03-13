@@ -165,3 +165,7 @@ images {
   z-index: 1;
   animation: none !important;
 }
+
+canvas {
+  filter: blur(px) opacity(0.5);
+}

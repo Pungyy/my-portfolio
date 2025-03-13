@@ -8,6 +8,7 @@ import SplitType from "split-type";
 import Navbar from "../components/navbar";
 import { SiTailwindcss } from "react-icons/si";
 import GlowCursor from "../components/GlowCursor";
+import MoonScene from "@/components/Moon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,10 +108,11 @@ export default function Home() {
     <ReactLenis root>
       <Navbar />
       <GlowCursor />
+      <MoonScene />
 
-      <div className="relative bg-black text-white overflow-hidden min-h-screen">
+      <div className="relative text-white overflow-hidden min-h-screen">
         {/* Effet néon */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* <div className="absolute inset-0 pointer-events-none">
           {neonStyles.map((style, index) => (
             <div
               key={index}
@@ -118,7 +120,7 @@ export default function Home() {
               style={style}
             ></div>
           ))}
-        </div>
+        </div> */}
 
         {/* Section Hero */}
         <div className="hero-section h-screen flex flex-col items-center justify-center relative z-10" ref={container}>
