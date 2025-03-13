@@ -4,6 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import { useRef, useState, useEffect } from "react";
 
+// Composant Moon pour la lune
 function Moon() {
   const moonRef = useRef();
   const texture = useTexture("/textures/moon.jpg");
@@ -36,12 +37,48 @@ function Moon() {
   );
 }
 
+// Composant Stars pour créer un ciel étoilé
+function Stars() {
+  const pointsRef = useRef();
+
+  // Génération des positions aléatoires des étoiles
+  const starPositions = useRef(new Float32Array(3000 * 3).map(() => (Math.random() - 0.5) * 200));
+
+  // Animation des étoiles
+  useFrame(() => {
+    if (pointsRef.current) {
+      pointsRef.current.rotation.y += 0.00005; // Rotation subtile
+      pointsRef.current.rotation.x += 0.00002;
+    }
+  });
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          array={starPositions.current}
+          count={500}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial size={0.5} color="white" transparent opacity={0.8} />
+    </points>
+  );
+}
+
+// Scene de la Lune avec l'effet étoilé
 export default function MoonScene() {
   return (
     <div className="fixed inset-0 -z-50">
       <Canvas camera={{ position: [0, 0, 20] }}>
         <ambientLight intensity={0.3} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
+        
+        {/* Ajouter les étoiles à la scène */}
+        <Stars />
+        
+        {/* Ajouter la lune à la scène */}
         <Moon />
       </Canvas>
     </div>
