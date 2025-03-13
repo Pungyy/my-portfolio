@@ -47,7 +47,7 @@ function Stars() {
   // Animation des étoiles
   useFrame(() => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += 0.00010; // Rotation subtile
+      pointsRef.current.rotation.y += 0.00100; // Rotation subtile
       pointsRef.current.rotation.x += 0.00002;
     }
   });
