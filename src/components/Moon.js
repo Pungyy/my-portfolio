@@ -24,13 +24,15 @@ function Moon() {
   useFrame(() => {
     if (moonRef.current) {
       moonRef.current.rotation.y += 0.0005; // Rotation légère
-      moonRef.current.position.y = -scrollY * 0.01; // Déplacement en Y au scroll
-      moonRef.current.position.x = Math.sin(scrollY * 0.002) * 5; // Légère oscillation
+
+      // Calcul de l'échelle en fonction du défilement
+      const scale = Math.max(1, 20 - scrollY * 0.009); // Commence à 50 et dézoome en fonction du scroll
+      moonRef.current.scale.set(scale, scale, scale); // Applique l'échelle sur les trois axes
     }
   });
 
   return (
-    <mesh ref={moonRef} scale={25} position={[0, 0, -50]}>
+    <mesh ref={moonRef} scale={50} position={[0, 0, -50]}>
       <sphereGeometry args={[1, 64, 64]} />
       <meshStandardMaterial map={texture} />
     </mesh>
