@@ -94,8 +94,8 @@ function Satellite() {
 
   return (
     <mesh ref={satRef} scale={0.5}>
-      <boxGeometry args={[1, 0.5, 0.5]} />
-      <meshStandardMaterial color="silver" />
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="yellow" />
     </mesh>
   );
 }
@@ -124,13 +124,24 @@ function ShootingStar() {
 // Nébuleuse
 function Nebula() {
   const texture = useTexture("/textures/nebula.png");
+  const nebulaRef = useRef();
+
+  useFrame(() => {
+    if (nebulaRef.current) {
+      // Légère rotation et oscillation subtile
+      nebulaRef.current.rotation.z += 0.0001;
+      nebulaRef.current.position.x = Math.sin(Date.now() * 0.00005) * 5;
+    }
+  });
+
   return (
-    <mesh position={[0, 0, -150]}>
-      <planeGeometry args={[300, 200]} />
-      <meshBasicMaterial map={texture} transparent opacity={0.3} />
+    <mesh ref={nebulaRef} position={[0, 0, -150]}>
+      <planeGeometry args={[500, 400]} />
+      <meshBasicMaterial map={texture} transparent opacity={1} />
     </mesh>
   );
 }
+
 
 // Scène principale
 export default function MoonScene() {
