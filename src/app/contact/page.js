@@ -21,7 +21,7 @@ export default function Contact() {
   useEffect(() => {
     // Initialisation de Lenis pour le défilement fluide
     lenisRef.current = new Lenis({
-      duration: 1.2, // Durée du défilement
+      duration: 0.6, // Durée du défilement
       easing: (t) => t, // Fonction d'easing (facultatif)
       smoothWheel: true, // Défilement fluide avec la molette
       smoothTouch: true, // Défilement fluide sur mobile
